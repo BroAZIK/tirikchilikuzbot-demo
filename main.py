@@ -2,6 +2,9 @@ import time
 from handlers import (
     get_last_update,
     start,
+    product,
+    info,
+    savat
 )
 
 
@@ -31,20 +34,28 @@ def main():
             if 'text' in new_message.keys():
                 # get new message text
                 text = new_message['text']
+                print(text)
 
                 # check if new message text is equal to '/start'
-                if text == '/start':
+                if text == '/start' or '🏠 Bosh menyu':
 
                     # get new message first_name
                     first_name = new_message['chat']['first_name']
 
                     # send start message
                     start(chat_id, first_name)
+                if text == '🔥 Mahsulotlar':
 
+                    product(chat_id)
+
+                if text == "ℹ️ Ma'lumot":
+
+                    info(chat_id)
+                if text == "📥Savat":
+                    savat(chat_id)
             # set last update_id to new update_id
             last_update_id = new_update_id
 
         # sleep for 1 second
         time.sleep(1)
-
 main()
